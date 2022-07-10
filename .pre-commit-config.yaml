@@ -19,3 +19,9 @@ repos:
     entry: buildifier --mode=fix
     language: system
     files: '^(.*/)?(BUILD\.bazel|BUILD)$|\.bzl$|^WORKSPACE$|^WORKSPACE.bazel$'
+  - id: rustfmt
+    name: Format with rustfmt
+    description: Runs `rustfmt` on Rust files
+    entry: rustfmt --check
+    language: system
+    types: [rust]
