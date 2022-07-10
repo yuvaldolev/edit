@@ -1,0 +1,13 @@
+workspace(name = "edit")
+
+load("//tools/bazel/edit:deps.bzl", "edit_deps")
+
+edit_deps()
+
+load("//tools/bazel/edit:extra_deps.bzl", "edit_extra_deps")
+
+edit_extra_deps()
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()
