@@ -29,7 +29,7 @@ jobs:
     - name: Install pre-commit
       run: brew install pre-commit
     - name: Lint Commit Messages
-      run: commitlint --from origin/main --to HEAD
+      run: commitlint -V --from origin/main --to HEAD
     - name: Lint
       run: pre-commit run -a
     - name: Build
