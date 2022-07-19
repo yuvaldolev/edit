@@ -11,3 +11,85 @@ edit_extra_deps()
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
+
+load("@rules_rust//crate_universe:defs.bzl", "crate", "crates_repository", "render_config")
+
+crates_repository(
+    name = "crate_index",
+    cargo_lockfile = "//:Cargo.Bazel.lock",
+    lockfile = "//:cargo-bazel-lock.json",
+    packages = {
+        "anyhow": crate.spec(
+            version = "1.0.58",
+        ),
+        "bumpalo": crate.spec(
+            features = ["collections"],
+            version = "3.10.0",
+        ),
+        "cacao": crate.spec(
+            version = "0.3.0",
+        ),
+        "cocoa": crate.spec(
+            version = "0.24.0",
+        ),
+        "fontdue": crate.spec(
+            version = "0.7.2",
+        ),
+        "imgui": crate.spec(
+            version = "0.8.2",
+        ),
+        "libc": crate.spec(
+            version = "0.2.126",
+        ),
+        "metal": crate.spec(
+            version = "0.24.0",
+        ),
+        "objc": crate.spec(
+            features = ["objc_exception"],
+            version = "0.2.7",
+        ),
+        "objc_id": crate.spec(
+            version = "0.1.1",
+        ),
+        "png": crate.spec(
+            version = "0.17.5",
+        ),
+        "rand": crate.spec(
+            version = "0.8.5",
+        ),
+        "rusttype": crate.spec(
+            version = "0.9.2",
+        ),
+        "serde": crate.spec(
+            features = ["derive"],
+            version = "1.0.139",
+        ),
+        "thiserror": crate.spec(
+            version = "1.0.31",
+        ),
+        "toml": crate.spec(
+            version = "0.5.9",
+        ),
+        "uuid": crate.spec(
+            features = [
+                "v4",
+                "fast-rng",
+                "macro-diagnostics",
+            ],
+            version = "1.1.2",
+        ),
+        "winit": crate.spec(
+            version = "0.26.1",
+        ),
+        "yaml-rust": crate.spec(
+            version = "0.4.5",
+        ),
+    },
+    render_config = render_config(
+        default_package_name = "",
+    ),
+)
+
+load("@crate_index//:defs.bzl", "crate_repositories")
+
+crate_repositories()
